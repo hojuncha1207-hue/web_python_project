@@ -3,8 +3,8 @@ from data import prof_list, related_keywords
 from main import EEStudent_Info
 
 st.set_page_config(page_title="전자공학 추천 시스템", layout="wide")
-st.title("💡 전자공학 맞춤 추천 시스템 ")
-st.subheader("전자공학과 학생의 관심도에 맞춘 성공적인 수업 수강을 위한 앱")
+st.title("💡 전자공학 수업/연구실 추천 시스템 ")
+st.subheader("전자공학과 학생의 관심도에 맞춘 성공적인 수업 수강과 학부연구를 위한 앱")
 @st.cache_resource
 def load_student_helper():
     return EEStudent_Info(all_professors=prof_list)
@@ -233,5 +233,6 @@ if st.button("🚀 나에게 맞는 추천 받기!", type="primary", use_contain
             else:
 
                 st.success("🎉 축하합니다! 전공필수 과목을 모두 수강하셨습니다!")
+
 
 
