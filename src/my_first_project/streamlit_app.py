@@ -6,7 +6,7 @@ st.set_page_config(page_title="전자공학 추천 시스템", layout="wide")
 st.title("💡 전자공학 수업/연구실 추천 시스템 ")
 st.markdown("아.. 내가 관심 있는 분야는 알겠는데, 무슨 수업을 듣지?")
 st.markdown("학연생.. 다들 하니까 하고 싶은데 어떤 교수님 랩실로 들어가야되는거지.. 내가 관심있는 분야랑 관련된 교수님이 계신가?")
-st.markdown("이런 고민을 해봤다면? 정답은 #전자공학 추천 시스템")
+st.markdown("이런 고민을 해봤다면? 정답은 **전자공학 추천 시스템**")
 st.subheader("전자공학과 학생의 관심도에 맞춘 성공적인 수업 수강과 학부연구를 위한 앱")
 @st.cache_resource
 def load_student_helper():
@@ -236,6 +236,7 @@ if st.button("🚀 나에게 맞는 추천 받기!", type="primary", use_contain
             else:
 
                 st.success("🎉 축하합니다! 전공필수 과목을 모두 수강하셨습니다!")
+
 
 
 
