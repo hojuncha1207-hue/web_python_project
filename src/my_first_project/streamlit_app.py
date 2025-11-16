@@ -3,7 +3,7 @@ from data import prof_list, related_keywords
 from main import EEStudent_Info
 
 st.set_page_config(page_title="전자공학 추천 시스템", layout="wide")
-st.title("💡 전자공학 맞춤 추천 시스템 (MVP)")
+st.title("💡 전자공학 맞춤 추천 시스템 ")
 
 @st.cache_resource
 def load_student_helper():
@@ -231,4 +231,5 @@ if st.button("🚀 나에게 맞는 추천 받기!", type="primary", use_contain
                 for course in remaining_required:
                     st.error(course)
             else:
+
                 st.success("🎉 축하합니다! 전공필수 과목을 모두 수강하셨습니다!")
