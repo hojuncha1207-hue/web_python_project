@@ -98,28 +98,7 @@ class EEStudent_Info:
             if keyword_to_find in [v.lower() for v in values]:
                 return set(related_keywords[key]) 
         return {keyword_to_find}
-    
-    def analyze_interest_match(self) -> (int, List[str]):
-        if not self.attended_classes:
-            return 0, []
-
-        keywords_to_check = self._get_keywords_from_interest()
         
-        matched_classes = []
-        for class_name in self.attended_classes:
-            for keyword in keywords_to_check:
-                if keyword.lower() in class_name.lower():
-                    matched_classes.append(class_name)
-                    break 
-
-        total_attended_count = len(self.attended_classes)
-        matched_count = len(matched_classes)
-        
-        score = 0
-        if total_attended_count > 0:
-            score = int((matched_count / total_attended_count) * 100)
-            
-        return score, matched_classes
     def analyze_interest_match(self) -> (int, List[str], List[str]):
         if not self.attended_classes:
             return 0, [], []
@@ -159,3 +138,4 @@ class EEStudent_Info:
                 }
                 return url_map.get(interest_key,"")
         return ""
+
