@@ -128,7 +128,7 @@ class EEStudent_Info:
             
         return score, matched_classes, sorted(unmatched_classes)
 
-    def get_recommended_url(self) -> str:
+    def get_recommended_url(sㅋelf) -> str:
         url_map = {
             "회로": "https://linkareer.com/search?q=%ED%9A%8C%EB%A1%9C&page=1",
             "반도체": "https://linkareer.com/search?q=%EB%B0%98%EB%8F%84%EC%B2%B4&page=1",
@@ -140,6 +140,7 @@ class EEStudent_Info:
         }
         
         return url_map.get(self.interested, "")
+
 
 
 
