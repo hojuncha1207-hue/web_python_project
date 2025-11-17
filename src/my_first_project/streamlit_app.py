@@ -186,7 +186,10 @@ if st.button("🚀 나에게 맞는 추천 받기!", type="primary", use_contain
         
         match_score, matched_classes, unmatched_classes = student_helper.analyze_interest_match()
         
-         
+        recommended_url = student_helper.get_recommended_url()
+        
+        st.balloons()
+        
         st.header(f"'{interest}' 분야에 대한 맞춤 추천 결과입니다.")
 
         st.subheader(f"📈 '{interest}' 분야 수강 일치율")
@@ -202,6 +205,15 @@ if st.button("🚀 나에게 맞는 추천 받기!", type="primary", use_contain
 
         st.divider()
         
+        st.subheader("🔗 관련 공모전 정보")
+        if recommended_url:
+            st.markdown(f"**[{interest} 관련 공모전/활동 보러가기 (Linkareer)]({recommended_url})**")
+            st.caption(f"링크: {recommended_url}")
+        else:
+            st.info(f"'{interest}' 분야에 대한 맞춤 공모전 링크를 찾지 못했습니다.")
+
+        st.divider()
+
         col_prof, col_course = st.columns(2)
         
         with col_prof:
@@ -233,8 +245,3 @@ if st.button("🚀 나에게 맞는 추천 받기!", type="primary", use_contain
                     st.error(course)
             else:
                 st.success("🎉 축하합니다! 전공필수 과목을 모두 수강하셨습니다!")
-
-
-
-
-
