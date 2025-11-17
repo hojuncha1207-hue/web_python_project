@@ -139,3 +139,14 @@ class EEStudent_Info:
                 return url_map.get(interest_key,"")
         return ""
 
+    def get_recommended_url(self)->str:
+        for interest_key in INTEREST_COURSE_MAP.keys():
+            if self.interested == interest_key:
+                url_map={
+                    "회로":"https://linkareer.com/search?q=%ED%9A%8C%EB%A1%9C&page=1",
+                    "반도체":"https://linkareer.com/search?q=%EB%B0%98%EB%8F%84%EC%B2%B4&page=1",
+                    "신호":"https://linkareer.com/search?q=%EC%8B%A0%ED%98%B8+%EC%B2%98%EB%A6%AC&page=1",
+                    "임베디드":"https://linkareer.com/search?q=%EC%9E%84%EB%B2%A0%EB%94%94%EB%93%9C&page=1"
+                }
+                return url_map.get(interest_key,"")
+        return ""
