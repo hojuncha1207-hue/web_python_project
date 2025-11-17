@@ -167,7 +167,6 @@ with tab_advanced:
         all_attended_list.extend(attended_semi)
 
 st.divider()
-
 if st.button("🚀 나에게 맞는 추천 받기!", type="primary", use_container_width=True):
     
     if not interest or not all_attended_list:
@@ -182,13 +181,14 @@ if st.button("🚀 나에게 맞는 추천 받기!", type="primary", use_contain
         
         profs = student_helper.recommend_professors_by_interest()
         remaining_required = student_helper.recommend_remaining_by_category("전공필수")
-        
         all_interest_courses, attended_interest_courses = student_helper.recommend_classes_by_interest()
         final_interest_courses = all_interest_courses - attended_interest_courses
         
         match_score, matched_classes, unmatched_classes = student_helper.analyze_interest_match()
         
+        recommended_url = student_helper.get_recommended_url()
         
+         
         st.header(f"'{interest}' 분야에 대한 맞춤 추천 결과입니다.")
 
         st.subheader(f"📈 '{interest}' 분야 수강 일치율")
@@ -204,6 +204,15 @@ if st.button("🚀 나에게 맞는 추천 받기!", type="primary", use_contain
 
         st.divider()
         
+        st.subheader("🔗 관련 공모전 정보")
+        if recommended_url:
+            st.markdown(f"**[{interest} 관련 공모전/활동 보러가기 (Linkareer)]({recommended_url})**")
+            st.caption(f"링크: {recommended_url}")
+        else:
+            st.info(f"'{interest}' 분야에 대한 맞춤 공모전 링크를 찾지 못했습니다.")
+
+        st.divider()
+
         col_prof, col_course = st.columns(2)
         
         with col_prof:
@@ -217,7 +226,6 @@ if st.button("🚀 나에게 맞는 추천 받기!", type="primary", use_contain
         
         with col_course:
             st.subheader(f"🎓 '{interest}' 분야 관련 추천 과목")
-            
             if final_interest_courses:
                 for course in sorted(list(final_interest_courses)):
                     st.info(course)
@@ -225,7 +233,7 @@ if st.button("🚀 나에게 맞는 추천 받기!", type="primary", use_contain
                 if all_interest_courses:
                     st.success("🎉 대단해요! 이 분야의 모든 추천 과목을 이미 수강하셨습니다!")
                 else:
-                    st.warning("이 관심 분야에 대한 추천 과목을 찾지 못했습니다.")
+                    st.warning("관련 추천 과목을 찾지 못했습니다.")
 
             if attended_interest_courses:
                 st.caption(f"참고: 이미 수강한 관련 과목: {', '.join(sorted(list(attended_interest_courses)))}")
@@ -235,13 +243,7 @@ if st.button("🚀 나에게 맞는 추천 받기!", type="primary", use_contain
                 for course in remaining_required:
                     st.error(course)
             else:
-
                 st.success("🎉 축하합니다! 전공필수 과목을 모두 수강하셨습니다!")
-
-
-
-
-
 
 
 
