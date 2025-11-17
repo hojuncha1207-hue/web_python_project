@@ -243,4 +243,3 @@ if st.button("🚀 나에게 맞는 추천 받기!", type="primary", use_contain
                     st.error(course)
             else:
                 st.success("🎉 축하합니다! 전공필수 과목을 모두 수강하셨습니다!")
-
