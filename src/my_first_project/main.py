@@ -131,7 +131,9 @@ class EEStudent_Info:
     def get_recommended_url(self) -> str:
         url_map = {
             "회로": "https://linkareer.com/search?q=%ED%9A%8C%EB%A1%9C&page=1",
+            "회로":"https://www.wevity.com/?c=find&s=1&sp=contents&sw=%ED%9A%8C%EB%A1%9C",
             "반도체": "https://linkareer.com/search?q=%EB%B0%98%EB%8F%84%EC%B2%B4&page=1",
+            "반도체": "https://www.wevity.com/?c=find&s=1&sp=contents&sw=%EB%B0%98%EB%8F%84%EC%B2%B4",
             "신호": "https://linkareer.com/search?q=%EC%8B%A0%ED%98%B8+%EC%B2%98%EB%A6%AC&page=1",
             "임베디드": "https://linkareer.com/search?q=%EC%9E%84%EB%B2%A0%EB%94%94%EB%93%9C&page=1",
             "머신러닝": "https://linkareer.com/search?q=%EB%A8%B8%EC%8B%A0%EB%9F%AC%EB%8B%9D&page=1",
@@ -140,6 +142,7 @@ class EEStudent_Info:
         }
         
         return url_map.get(self.interested, "")
+
 
 
 
