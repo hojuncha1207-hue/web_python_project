@@ -128,20 +128,47 @@ class EEStudent_Info:
             
         return score, matched_classes, sorted(unmatched_classes)
 
-    def get_recommended_url(self) -> str:
-        url_map = {
-            "회로": "https://linkareer.com/search?q=%ED%9A%8C%EB%A1%9C&page=1",
-            "회로":"https://www.wevity.com/?c=find&s=1&sp=contents&sw=%ED%9A%8C%EB%A1%9C",
-            "반도체": "https://linkareer.com/search?q=%EB%B0%98%EB%8F%84%EC%B2%B4&page=1",
-            "반도체": "https://www.wevity.com/?c=find&s=1&sp=contents&sw=%EB%B0%98%EB%8F%84%EC%B2%B4",
-            "신호": "https://linkareer.com/search?q=%EC%8B%A0%ED%98%B8+%EC%B2%98%EB%A6%AC&page=1",
-            "임베디드": "https://linkareer.com/search?q=%EC%9E%84%EB%B2%A0%EB%94%94%EB%93%9C&page=1",
-            "머신러닝": "https://linkareer.com/search?q=%EB%A8%B8%EC%8B%A0%EB%9F%AC%EB%8B%9D&page=1",
-            "AI": "https://linkareer.com/search?q=AI&page=1",
-            "로봇": "https://linkareer.com/search?q=%EB%A1%9C%EB%B4%87&page=1"
+def get_recommended_url(self) -> List[Dict[str, str]]:
+        base_urls = {
+            "링커리어": "https://linkareer.com/search?q={}&page=1",
+            "위비티": "https://www.wevity.com/?c=find&s=1&keyword={}",
+            "씽굿": "https://www.thinkcontest.com/Contest/Search/result.html?page=1&search={}"
         }
+
+        # 2. 현재 관심 분야 키워드 가져오기 (예: "회로", "AI")
+        keyword = self.interested
         
-        return url_map.get(self.interested, "")
+        # 3. 관심 분야가 없으면 빈 리스트 반환
+        if not keyword:
+            return []
+
+        # 4. 결과 리스트 생성
+        recommended_links = []
+        
+        # 각 사이트별로 검색 링크 생성
+        for site_name, url_pattern in base_urls.items():
+            # 예: "위비티"에서 "회로" 검색하는 URL 만들기
+            full_url = url_pattern.format(keyword)
+            
+            # 리스트에 추가
+            recommended_links.append({
+                "title": f"{site_name}에서 '{keyword}' 공모전 검색",
+                "url": full_url
+            })
+            
+        # 5. (선택) 분야별 특화 사이트가 있다면 추가 (예: AI는 AI Hub)
+        if keyword == "AI":
+            recommended_links.append({
+                "title": "AI Hub (데이터셋 포털)",
+                "url": "https://aihub.or.kr/"
+            })
+        elif keyword == "반도체":
+             recommended_links.append({
+                "title": "반도체산업협회 (지원사업)",
+                "url": "https://www.ksia.or.kr/"
+            })
+
+        return recommended_links
 
 
 
