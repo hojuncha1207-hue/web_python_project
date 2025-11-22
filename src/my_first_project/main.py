@@ -1,7 +1,7 @@
 from data import (
     Majorbasic, Majorrequire, Majorselete, Majorselete_experiment, 
     Majorsadvance_circuit, Majoradvance_signalsystem, Majoradvance_semiconductor,
-    Professor, prof_list, related_keywords, INTEREST_COURSE_MAP
+    Professor, prof_list, related_keywords, INTEREST_COURSE_MAP,COURSE_DESCRIPTIONS
 )
 from typing import List, Dict, Optional, Set
 
@@ -129,6 +129,10 @@ class EEStudent_Info:
             
         return score, matched_classes, sorted(unmatched_classes)
 
+    def get_course_description(self, course_name: str) -> str:
+
+        return COURSE_DESCRIPTIONS.get(course_name, "📌 이 과목에 대한 상세 설명이 아직 등록되지 않았습니다.")
+    #과목에 대한 상세 주소 제공
     def get_recommended_url(self) -> List[Dict[str, str]]:
         base_urls = {
             "링커리어": "https://linkareer.com/search?q={}&page=1",
