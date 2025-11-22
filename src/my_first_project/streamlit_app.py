@@ -222,7 +222,10 @@ if st.button("🚀 나에게 맞는 추천 받기!", type="primary", use_contain
             if profs:
                 for prof in profs:
                     st.markdown(f"**{prof.name} 교수님** ({prof.office_location})")
+                    if prof.email:
+                        st.caption(f"📧 {prof.email}")
                     st.caption(f"주요 연구: {prof.research}")
+                    
             else:
                 st.warning("관련 교수님을 찾지 못했습니다.")
         
@@ -230,7 +233,10 @@ if st.button("🚀 나에게 맞는 추천 받기!", type="primary", use_contain
             st.subheader(f"🎓 '{interest}' 분야 관련 추천 과목")
             if final_interest_courses:
                 for course in sorted(list(final_interest_courses)):
-                    st.info(course)
+                    # [수정] st.info(course) 대신 expander 사용
+                    with st.expander(f"📘 {course} (상세보기)"):
+                        description = student_helper.get_course_description(course)
+                        st.markdown(description)
             else:
                 if all_interest_courses:
                     st.success("🎉 대단해요! 이 분야의 모든 추천 과목을 이미 수강하셨습니다!")
@@ -238,13 +244,15 @@ if st.button("🚀 나에게 맞는 추천 받기!", type="primary", use_contain
                     st.warning("관련 추천 과목을 찾지 못했습니다.")
 
             if attended_interest_courses:
-                st.caption(f"참고: 이미 수강한 관련 과목: {', '.join(sorted(list(attended_interest_courses)))}")
+                with st.expander("참고: 이미 수강한 관련 과목 보기"):
+                    st.write(", ".join(sorted(list(attended_interest_courses))))
 
             st.subheader("✅ 남은 전공필수 과목")
             if remaining_required:
                 for course in remaining_required:
-                    st.error(course)
+                    # [수정] st.error(course) 대신 expander 사용 (빨간색 느낌을 위해 이모지 추가)
+                    with st.expander(f" {course} "):
+                        description = student_helper.get_course_description(course)
+                        st.error(description) # 설명은 빨간 박스 안에 표시
             else:
                 st.success("🎉 축하합니다! 전공필수 과목을 모두 수강하셨습니다!")
-
-
