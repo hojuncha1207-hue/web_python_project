@@ -128,48 +128,36 @@ class EEStudent_Info:
             
         return score, matched_classes, sorted(unmatched_classes)
 
-def get_recommended_url(self) -> List[Dict[str, str]]:
+# main.py
+
+    def get_recommended_url(self) -> List[Dict[str, str]]:
+        # 1. 검색할 사이트들의 기본 검색 URL 패턴 정의
         base_urls = {
             "링커리어": "https://linkareer.com/search?q={}&page=1",
             "위비티": "https://www.wevity.com/?c=find&s=1&keyword={}",
             "씽굿": "https://www.thinkcontest.com/Contest/Search/result.html?page=1&search={}"
         }
 
-        # 2. 현재 관심 분야 키워드 가져오기 (예: "회로", "AI")
         keyword = self.interested
         
-        # 3. 관심 분야가 없으면 빈 리스트 반환
         if not keyword:
             return []
 
-        # 4. 결과 리스트 생성
         recommended_links = []
         
-        # 각 사이트별로 검색 링크 생성
         for site_name, url_pattern in base_urls.items():
-            # 예: "위비티"에서 "회로" 검색하는 URL 만들기
             full_url = url_pattern.format(keyword)
             
-            # 리스트에 추가
             recommended_links.append({
                 "title": f"{site_name}에서 '{keyword}' 공모전 검색",
                 "url": full_url
             })
-            
-        # 5. (선택) 분야별 특화 사이트가 있다면 추가 (예: AI는 AI Hub)
         if keyword == "AI":
-            recommended_links.append({
-                "title": "AI Hub (데이터셋 포털)",
-                "url": "https://aihub.or.kr/"
-            })
+            recommended_links.append({"title": "AI Hub", "url": "https://aihub.or.kr/"})
         elif keyword == "반도체":
-             recommended_links.append({
-                "title": "반도체산업협회 (지원사업)",
-                "url": "https://www.ksia.or.kr/"
-            })
+             recommended_links.append({"title": "반도체산업협회", "url": "https://www.ksia.or.kr/"})
 
         return recommended_links
-
 
 
 
