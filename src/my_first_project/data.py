@@ -1,19 +1,49 @@
-#전공 과목들에 대한 정보
-Majorbasic = ["미분적분학","고급미분적분학","선형대수","미분방정식",
-            "물리학및실험1","물리학및실험2","확률및랜덤변수","웹/파이썬프로그래밍",
-            "객체지향프로그래밍및실습"]
-Majorrequire = ["Adventure_Design","신호와시스템","물리전자",
-                "논리회로","회로이론","전자회로1","기초회로실험",
-                 "종합설계","졸업논문"]
-Majorselete = ["디지털신호처리","마이크로프로세서","자료구조및알고리즘","머신러닝개론",
-                "컴퓨터구조","컴퓨터네트워크","디지털통신","정보및부호이론","디지털회로설계및언어",
-                "전자회로2","자동제어","전자기학2","반도체공학","반도체공정","로봇제어공학"]
-Majorselete_experiment= ["전파통신실험","DSP실험","디지털집적회로모델링실험","전자회로실험","소프트웨어랩"]
-Majorsadvance_circuit = ["VLSI_설계","임베디드시스템설계","반도체집적회로",
-                        "로봇제어공학","Soc_설계"]
-Majoradvance_signalsystem = ["이동통신","무선데이터통신","영상신호처리","실감미디어시스템"]
-Majoradvance_semiconductor = ["광전자공학","디스플레이공학","고주파공학","안테나공학"]
+# 전공기초
+Majorbasic = [
+    "미분방정식", "고급미분적분학", "선형대수", "미분적분학",
+    "물리학및실험1", "물리학및실험2", "확률및랜덤변수",
+    "객체지향프로그래밍및실습", "웹/파이썬프로그래밍"
+]
 
+# 전공필수
+Majorrequire = [
+    "전자기학1", "회로이론", "물리전자", "전자회로1", "기초회로실험",
+    "논리회로", "신호와시스템", "Adventure Design",
+    "졸업논문(전자공학)", "종합설계(전자공학)"
+]
+
+# 전공선택 
+Majorselete = [
+    "컴퓨터구조", "컴퓨터네트워크", "전자기학2", "자료구조및알고리즘",
+    "회로이론2", "반도체공학", "전파통신실험", "초고주파공학",
+    "반도체공정", "디지털통신", "디지털신호처리", "DSP실험",
+    "디지털회로설계및언어", "디지털집적회로모델링실험", "자동제어",
+    "마이크로프로세서", "전자회로2", "전자회로실험", "임베디드시스템설계",
+    "소프트웨어랩", "머신러닝개론", "광전자공학", "안테나공학",
+    "디스플레이공학", "정보및부호이론", "이동통신", "무선데이터통신",
+    "영상신호처리", "실감미디어시스템", "로봇제어공학", "VLSI설계",
+    "SoC설계", "반도체집적회로"
+]
+
+Majorselete_experiment = [
+    "기초회로실험", "전파통신실험", "DSP실험", "디지털집적회로모델링실험",
+    "전자회로실험", "소프트웨어랩", "Adventure Design", "종합설계(전자공학)"
+]
+
+Majorsadvance_circuit = [
+    "전자회로2", "디지털회로설계및언어", "임베디드시스템설계", "VLSI설계",
+    "SoC설계", "반도체집적회로", "로봇제어공학", "자동제어", "마이크로프로세서"
+]
+
+Majoradvance_signalsystem = [
+    "디지털통신", "디지털신호처리", "정보및부호이론", "이동통신",
+    "무선데이터통신", "영상신호처리", "실감미디어시스템", "머신러닝개론"
+]
+
+Majoradvance_semiconductor = [
+    "반도체공학", "반도체공정", "광전자공학", "디스플레이공학",
+    "초고주파공학", "안테나공학", "전자기학2"
+]
 related_keywords={}
 related_keywords["반도체"]= ["반도체","소자","나노","광전자","디스플레이","MEMS","VLSI"]
 related_keywords["회로"]= ["회로","임베디드","로봇","제어","시스템","SoC","마이크로프로세서"]
@@ -22,52 +52,53 @@ related_keywords["임베디드"]= ["임베디드","로봇","제어","시스템",
 
 
 class Professor:
-    def __init__(self, name, research, office_location):
+    def __init__(self, name, research, office_location,mail_address):
         self.name = name
         self.research = research
         self.office_location = office_location
+        self.email=mail_address
 
 
 prof_list = [
     # 반도체 및 파동 연구그룹
-    Professor("박욱", "Bio-MEMS, Multiscale fabrication, Anti-counterfeiting technology, PUFs, DNA storage, Encoded particle", "MultiplexON 403호"),
-    Professor("백운식", "광신호처리, 홀로그래피, 생체공학", "416호"),
-    Professor("예윤해", "광섬유 광학(광섬유 센서, 광통신용 부품), 간섭형 광섬유 센서, 신호처리 및 칩 설계 기술, 광섬유 가공 기술", "507호"),
-    Professor("유재수", "나노반도체 및 광전소자 설계, 성장/제작, 패키징 및 측정기술", "503호"),
-    Professor("이범선", "소형 및 배열안테나(광대역, 멀티밴드, MIMO, 위성 추진체 및 로켓 등), 메타물질, 무선전력전송", "611호"),
-    Professor("이승현", "차세대 소자, 메모리 및 디스플레이", "518호"),
-    Professor("김상혁", "전자파, 무선 전력 전송, Signal/Power Integrity, Microwave Imaging, mmWave Radar Technology", "408호"),
-    Professor("김대원", "Energy Harvesting/Conversion/Storage System, Nano Bio-Electronic Device", "410호"),
-    Professor("이응규", "에너지 & 포토닉스", "516호"),
+    Professor("박욱", "Bio-MEMS, Multiscale fabrication, Anti-counterfeiting technology, PUFs, DNA storage, Encoded particle", "MultiplexON 403호", "parkwook@khu.ac.kr"),
+    Professor("백운식", "광신호처리, 홀로그래피, 생체공학", "416호", "wsbaek@khu.ac.kr"),
+    Professor("예윤해", "광섬유 광학(광섬유 센서, 광통신용 부품), 간섭형 광섬유 센서, 신호처리 및 칩 설계 기술, 광섬유 가공 기술", "507호", "yhyh@khu.ac.kr"),
+    Professor("유재수", "나노반도체 및 광전소자 설계, 성장/제작, 패키징 및 측정기술", "503호", "jsyu@khu.ac.kr"),
+    Professor("이범선", "소형 및 배열안테나(광대역, 멀티밴드, MIMO, 위성 추진체 및 로켓 등), 메타물질, 무선전력전송", "611호", "bomson@khu.ac.kr"),
+    Professor("이승현", "차세대 소자, 메모리 및 디스플레이", "518호", "seansl@khu.ac.kr"),
+    Professor("김상혁", "전자파, 무선 전력 전송, Signal/Power Integrity, Microwave Imaging, mmWave Radar Technology", "408호", "sanghoek@khu.ac.kr"),
+    Professor("김대원", "Energy Harvesting/Conversion/Storage System, Nano Bio-Electronic Device", "410호", "daewon@khu.ac.kr"),
+    Professor("이응규", "에너지 & 포토닉스", "516호", "eleest@khu.ac.kr"),
     
     # 회로 및 시스템 연구그룹
-    Professor("김동한", "Multi-agent Cooperation System, Human Robot Interaction (HRI)", "609호"),
-    Professor("김진상", "영상 및 이동통신용 SoC, 회로 및 시스템설계, 나노공정을 이용한 우주국방용 VLSI 설계", "515호"),
-    Professor("김창우", "MMIC 설계 및 제작, 이동/위성통신용 RF소자 및 회로설계 및 제작", "613호"),
-    Professor("윤상웅", "High frequency integrated circuits, modules, and systems", "608호"),
-    Professor("이종욱", "RFID 태그설계, 통신용 RF 회로설계, 밀리미터파 회로설계, 전력제어회로(PMIC) 설계", "617호"),
-    Professor("장익준", "초저전력 VLSI 및 회로 설계, Nano 소자를 이용한 회로 설계, 차세대 메모리 연구", "519호"),
-    Professor("정연모", "SoC Design, Embedded Systems, Digital Systems, Software Engineering", "405호"),
-    Professor("홍상훈", "임베디드 메모리 설계, 저전력 인터페이스 회로 설계", "606호"),
-    Professor("임영현", "저전력, 저잡음, 초소형 아날로그/RF 회로 설계 for 5G/6G통신, 사물인터넷", "608호"),
-    Professor("최승규", "고성능/고에너지효율 시스템을 위한 소프트웨어-하드웨어 공동 설계, 인공지능 가속기 설계", "543-2호"),
-    Professor("최우준", "스마트 센서 인터페이스 회로 설계, 바이오 메디컬 회로 및 시스템 설계, 초소형 컴퓨팅 플랫폼 설계", "우정원 7002호"),
+    Professor("김동한", "Multi-agent Cooperation System, Human Robot Interaction (HRI)", "609호", "donghani@khu.ac.kr"),
+    Professor("김진상", "영상 및 이동통신용 SoC, 회로 및 시스템설계, 나노공정을 이용한 우주국방용 VLSI 설계", "515호", "jskim@khu.ac.kr"),
+    Professor("김창우", "MMIC 설계 및 제작, 이동/위성통신용 RF소자 및 회로설계 및 제작", "613호", "cwkim@khu.ac.kr"),
+    Professor("윤상웅", "High frequency integrated circuits, modules, and systems", "608호", "sangwyoon@khu.ac.kr"),
+    Professor("이종욱", "RFID 태그설계, 통신용 RF 회로설계, 밀리미터파 회로설계, 전력제어회로(PMIC) 설계", "617호", "jwlee@khu.ac.kr"),
+    Professor("장익준", "초저전력 VLSI 및 회로 설계, Nano 소자를 이용한 회로 설계, 차세대 메모리 연구", "519호", "ichang@khu.ac.kr"),
+    Professor("정연모", "SoC Design, Embedded Systems, Digital Systems, Software Engineering", "405호", "chung@khu.ac.kr"),
+    Professor("홍상훈", "임베디드 메모리 설계, 저전력 인터페이스 회로 설계", "606호", "daniel@khu.ac.kr"),
+    Professor("임영현", "저전력, 저잡음, 초소형 아날로그/RF 회로 설계 for 5G/6G통신, 사물인터넷", "608호", "younghyun@khu.ac.kr"),
+    Professor("최승규", "고성능/고에너지효율 시스템을 위한 소프트웨어-하드웨어 공동 설계, 인공지능 가속기 설계", "543-2호", "seungkc@khu.ac.kr"),
+    Professor("최우준", "스마트 센서 인터페이스 회로 설계, 바이오 메디컬 회로 및 시스템 설계, 초소형 컴퓨팅 플랫폼 설계", "우정원 7002호", ""), # 이메일 정보 없음
 
     # 통신 및 신호처리 연구그룹
-    Professor("김규헌", "디지털 멀티미디어 방송, 대화형 데이터 서비스 기술, 영항 및 동영상 처리", "501호"),
-    Professor("김원하", "인간인지기반 멀티디디어 신호처리 및 부호화, 디지털방송응용기술", "517호"),
-    Professor("김윤희", "무선/이동통신, 통신신호처리, 6G 물리계층 설계 및 지능화", "520호"),
-    Professor("김정근", "무선네트워크", "525호"),
-    Professor("서덕영", "Networked Media, Mobile Multimedia, MPEG/3GPP Standardization", "401호"),
-    Professor("손원", "디지털방송, 위성통신, 신호처리", "521호"),
-    Professor("송주빈", "무선통신 및 네트워킹, 최적자원할당기술, Cognitive Radio Networking, Cyber Physical Systems, Internet of Things, Smart Grid", "615호"),
-    Professor("신현동", "무선통신, 양자정보 및 컴퓨팅", "513호"),
-    Professor("이계산", "차세대 이동통신, OFDM, MC-CDMA, MC-DS/CDMA, Visible Light Communication, LED 통신", "505호"),
-    Professor("정해준", "무선통신, 신호처리, 지능형 네트워크, 무선전력 전송", "514호"),
-    Professor("최민석", "Wireless Distributed System (Wireless Caching, Edge Computing, Distributed Learning), Federated Learning, Reinforcement Learning, Network Optimization, Content Delivery and Video Streaming", "510호"),
-    Professor("홍인기", "이동통신시스템 물리채널, 스펙트럼 엔지니어링, Cross-layer Engineering", "523호"),
-    Professor("고한얼", "5G/6G 모바일 코어 네트워크, 네트워크 자동화, 모바일 엣지 컴퓨팅, SDN, IoT", "416호"),
-    Professor("최기호", "Video/Image/Multimedia Coding and Processing, Deep Learning based Multimedia Coding and Processing, Multimedia Standardization", "410호")
+    Professor("김규헌", "디지털 멀티미디어 방송, 대화형 데이터 서비스 기술, 영항 및 동영상 처리", "501호", "kyuheonkim@khu.ac.kr"),
+    Professor("김원하", "인간인지기반 멀티디디어 신호처리 및 부호화, 디지털방송응용기술", "517호", "wonha@khu.ac.kr"),
+    Professor("김윤희", "무선/이동통신, 통신신호처리, 6G 물리계층 설계 및 지능화", "520호", "yheekim@khu.ac.kr"),
+    Professor("김정근", "무선네트워크", "525호", "jg_kim@khu.ac.kr"),
+    Professor("서덕영", "Networked Media, Mobile Multimedia, MPEG/3GPP Standardization", "401호", "suh@khu.ac.kr"),
+    Professor("손원", "디지털방송, 위성통신, 신호처리", "521호", "wsohn@khu.ac.kr"),
+    Professor("송주빈", "무선통신 및 네트워킹, 최적자원할당기술, Cognitive Radio Networking, Cyber Physical Systems, Internet of Things, Smart Grid", "615호", "jsong@khu.ac.kr"),
+    Professor("신현동", "무선통신, 양자정보 및 컴퓨팅", "513호", "hshin@khu.ac.kr"),
+    Professor("이계산", "차세대 이동통신, OFDM, MC-CDMA, MC-DS/CDMA, Visible Light Communication, LED 통신", "505호", "kyesan@khu.ac.kr"),
+    Professor("정해준", "무선통신, 신호처리, 지능형 네트워크, 무선전력 전송", "514호", "haejoonjung@khu.ac.kr"),
+    Professor("최민석", "Wireless Distributed System (Wireless Caching, Edge Computing, Distributed Learning), Federated Learning, Reinforcement Learning, Network Optimization, Content Delivery and Video Streaming", "510호", "choims@khu.ac.kr"),
+    Professor("홍인기", "이동통신시스템 물리채널, 스펙트럼 엔지니어링, Cross-layer Engineering", "523호", "ekhong@khu.ac.kr"),
+    Professor("고한얼", "5G/6G 모바일 코어 네트워크, 네트워크 자동화, 모바일 엣지 컴퓨팅, SDN, IoT", "416호", "heko@khu.ac.kr"),
+    Professor("최기호", "Video/Image/Multimedia Coding and Processing, Deep Learning based Multimedia Coding and Processing, Multimedia Standardization", "410호", "aikiho@khu.ac.kr")
 ]
 INTEREST_COURSE_MAP = {
     "회로": ["회로이론", "전자회로1", "전자회로2", "디지털회로설계및언어", "기초회로실험", "회로이론2", "VLSI_설계", "임베디드시스템설계", "반도체집적회로", "로봇제어공학", "Soc_설계"],
@@ -77,6 +108,64 @@ INTEREST_COURSE_MAP = {
     "컴퓨터": ["웹/파이썬프로그래밍", "객체지향프로그래밍및실습", "자료구조및알고리즘", "컴퓨터구조", "컴퓨터네트워크", "소프트웨어랩", "머신러닝개론"],
     "AI": ["머신러닝개론", "자료구조및알고리즘", "디지털신호처리", "영상신호처리"],
     "로봇": ["로봇제어공학", "자동제어", "마이크로프로세서"]
-
 }
+# 4. 과목 상세 설명 (COURSE_DESCRIPTIONS)
+# ==========================================
+COURSE_DESCRIPTIONS = {
+    # 전공기초
+    "미분방정식": "공학 문제를 모델링하는 데 필수적인 상미분방정식의 해법과 라플라스 변환 등을 학습합니다.",
+    "고급미분적분학": "다변수 함수의 미분과 적분, 벡터 해석 등 심화된 수학적 도구를 배웁니다.",
+    "선형대수": "행렬, 벡터 공간, 고유값 등 데이터 처리와 신호 해석의 기초가 되는 수학을 다룹니다.",
+    "미분적분학": "함수의 극한, 미분, 적분의 개념과 그 응용을 다루는 기초 수학 과목입니다.",
+    "물리학및실험1": "역학, 파동, 열역학 등 고전 물리학의 기본 원리를 실험과 함께 학습합니다.",
+    "물리학및실험2": "전자기학, 광학, 현대 물리 등 전자공학의 기초가 되는 물리 이론을 실험과 함께 배웁니다.",
+    "확률및랜덤변수": "불확실한 신호와 시스템을 해석하기 위한 확률 이론과 랜덤 프로세스의 기초를 배웁니다.",
+    "객체지향프로그래밍및실습": "C++ 또는 Java를 이용해 클래스, 상속, 다형성 등 객체지향 프로그래밍 기법을 익힙니다.",
+    "웹/파이썬프로그래밍": "파이썬 기초 문법과 웹 데이터 처리, 기초적인 웹 어플리케이션 제작을 실습합니다.",
 
+    # 전공필수
+    "전자기학1": "전하, 전계, 전위 등 정전계의 성질과 도체, 유전체의 특성을 학습합니다.",
+    "회로이론": "전기 회로의 기본 법칙(옴, 키르히호프)과 회로 해석 기법, RLC 회로의 응답을 배웁니다.",
+    "물리전자": "반도체의 결정 구조, 에너지 밴드, 캐리어 이동 등 전자 소자의 작동 원리가 되는 물성을 배웁니다.",
+    "전자회로1": "다이오드, 트랜지스터(BJT, MOSFET)의 동작 원리와 이를 이용한 기본 증폭기 회로를 해석합니다.",
+    "기초회로실험": "저항, 커패시터, 인덕터 등 기본 소자의 특성을 이해하고 회로 계측 장비 사용법을 익힙니다.",
+    "논리회로": "디지털 시스템의 기초인 부울 대수, 논리 게이트, 조합 및 순차 회로의 설계 방법을 배웁니다.",
+    "신호와시스템": "연속 및 이산 시간 신호의 특성과 시스템의 주파수 영역 해석(퓨리에, 라플라스 변환)을 다룹니다.",
+    "Adventure Design": "저학년을 대상으로 공학적 문제 해결 능력과 창의적 설계를 경험하는 입문 설계 과목입니다.",
+    "종합설계(전자공학)": "학부 과정에서 배운 지식을 종합하여 하드웨어/소프트웨어 시스템을 직접 기획하고 제작합니다(캡스톤 디자인).",
+
+    # 전공선택 & 심화
+    "컴퓨터구조": "CPU, 메모리, 입출력 장치 등 컴퓨터 하드웨어의 구성 동작 원리와 설계 기법을 배웁니다.",
+    "컴퓨터네트워크": "인터넷 프로토콜(TCP/IP), 데이터 통신 방식, 네트워크 계층 구조를 학습합니다.",
+    "전자기학2": "자계, 맥스웰 방정식, 전자기파의 전파 특성 등을 다루는 전자기학의 심화 과정입니다.",
+    "자료구조및알고리즘": "스택, 큐, 트리 등 데이터 구조와 이를 효율적으로 처리하는 알고리즘을 배웁니다.",
+    "회로이론2": "라플라스 변환을 이용한 회로 해석, 2-포트 회로망, 주파수 응답 등 심화된 회로 이론을 다룹니다.",
+    "반도체공학": "PN 접합, MOS 커패시터, MOSFET 등 반도체 소자의 동작 원리와 전기적 특성을 심도 있게 배웁니다.",
+    "전파통신실험": "RF 회로 및 안테나, 통신 시스템의 동작을 실제 장비를 통해 측정하고 분석하는 실험입니다.",
+    "초고주파공학": "마이크로파 대역에서의 전송선로 이론, 도파관, 고주파 회로 소자의 특성을 학습합니다.",
+    "반도체공정": "반도체 칩 제작을 위한 8대 공정(노광, 식각, 증착 등)의 원리와 장비 기술을 이해합니다.",
+    "디지털통신": "디지털 변복조 방식, 채널 코딩, 정보 전송 이론 등 현대 통신 시스템의 핵심 기술을 배웁니다.",
+    "디지털신호처리": "이산 신호의 주파수 분석(DFT/FFT), 디지털 필터 설계 등 신호 처리 알고리즘을 학습합니다.",
+    "DSP실험": "DSP 프로세서를 이용하여 디지털 신호 처리 알고리즘을 실제로 구현하고 동작을 검증합니다.",
+    "디지털회로설계및언어": "Verilog/VHDL 등 하드웨어 기술 언어(HDL)를 이용해 디지털 시스템을 설계하고 시뮬레이션합니다.",
+    "디지털집적회로모델링실험": "디지털 집적회로의 동작을 모델링하고 시뮬레이션 도구를 이용해 설계 및 검증하는 실습입니다.",
+    "자동제어": "피드백 제어 시스템의 모델링, 시간/주파수 영역 해석, 안정성 판별 및 제어기 설계를 배웁니다.",
+    "마이크로프로세서": "MCU의 내부 구조와 주변 장치 제어, 인터럽트 처리 등을 어셈블리어 또는 C언어로 실습합니다.",
+    "전자회로2": "주파수 응답, 피드백 증폭기, 연산 증폭기, 전력 증폭기 등 심화된 아날로그 회로를 해석합니다.",
+    "전자회로실험": "트랜지스터 증폭기, 연산 증폭기 응용 회로 등을 직접 구성하고 특성을 측정하는 실험입니다.",
+    "임베디드시스템설계": "임베디드 OS나 펌웨어를 기반으로 하드웨어와 소프트웨어가 결합된 시스템을 설계합니다.",
+    "소프트웨어랩": "실무 중심의 소프트웨어 개발 도구 사용법과 프로젝트 진행 능력을 키우는 실습 과목입니다.",
+    "머신러닝개론": "인공지능의 기초인 머신러닝 알고리즘(회귀, 분류, 딥러닝 기초)의 원리와 응용을 학습합니다.",
+    "광전자공학": "빛의 생성과 검출 원리, 레이저, 광섬유, 디스플레이 등 광소자의 원리를 배웁니다.",
+    "안테나공학": "전파를 송수신하는 안테나의 방사 원리, 종류, 설계 파라미터 등을 학습합니다.",
+    "디스플레이공학": "LCD, OLED 등 다양한 디스플레이 패널의 구동 원리와 제조 기술을 배웁니다.",
+    "정보및부호이론": "정보의 양을 수학적으로 정의하고, 데이터 압축 및 오류 정정 부호화 기술을 학습합니다.",
+    "이동통신": "셀룰러 시스템, 페이딩 채널, LTE/5G 등 무선 이동통신 시스템의 구조와 핵심 기술을 다룹니다.",
+    "무선데이터통신": "무선 랜(Wi-Fi), 블루투스 등 근거리 무선 통신 프로토콜과 네트워크 구조를 학습합니다.",
+    "영상신호처리": "디지털 영상의 개선, 복원, 압축, 인식 등 영상 데이터를 처리하는 기법을 배웁니다.",
+    "실감미디어시스템": "VR/AR, 홀로그램 등 실감형 콘텐츠를 처리하고 디스플레이하는 시스템 기술을 다룹니다.",
+    "로봇제어공학": "로봇의 운동학, 동역학을 해석하고 로봇 팔이나 이동 로봇을 제어하는 알고리즘을 배웁니다.",
+    "VLSI설계": "대규모 집적회로(LSI)의 레이아웃, 설계 규칙, 회로 최적화 기법을 학습합니다.",
+    "SoC설계": "시스템 온 칩(System on Chip) 구조, IP 재사용, 버스 구조 등 복잡한 반도체 시스템 설계를 배웁니다.",
+    "반도체집적회로": "메모리나 비메모리 집적회로의 소자 레벨 설계와 공정 이슈 등을 심화 학습합니다."
+}
