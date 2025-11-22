@@ -1,7 +1,8 @@
 from data import (
     Majorbasic, Majorrequire, Majorselete, Majorselete_experiment, 
     Majorsadvance_circuit, Majoradvance_signalsystem, Majoradvance_semiconductor,
-    Professor, prof_list,related_keywords,INTEREST_COURSE_MAP)
+    Professor, prof_list, related_keywords, INTEREST_COURSE_MAP
+)
 from typing import List, Dict, Optional, Set
 
 class EEStudent_Info:
@@ -16,8 +17,8 @@ class EEStudent_Info:
         
         self.all_professors = all_professors
         
-        self.school_year: Optional[int]
-        self.interested: Optional[str] 
+        self.school_year: Optional[int] = None
+        self.interested: Optional[str] = None
         self.attended_classes: Set[str] = set()
 
     def get_student_interest(self, school_year: int, interested: str):
@@ -95,10 +96,10 @@ class EEStudent_Info:
         if keyword_set:
             return set(keyword_set) 
         for key, values in related_keywords.items():
-            if keyword_to_find in [interest.lower() for interest in values]:
+            if keyword_to_find in [v.lower() for v in values]:
                 return set(related_keywords[key]) 
         return {keyword_to_find}
-        
+    
     def analyze_interest_match(self) -> (int, List[str], List[str]):
         if not self.attended_classes:
             return 0, [], []
@@ -128,10 +129,7 @@ class EEStudent_Info:
             
         return score, matched_classes, sorted(unmatched_classes)
 
-# main.py
-
     def get_recommended_url(self) -> List[Dict[str, str]]:
-        # 1. 검색할 사이트들의 기본 검색 URL 패턴 정의
         base_urls = {
             "링커리어": "https://linkareer.com/search?q={}&page=1",
             "위비티": "https://www.wevity.com/?c=find&s=1&keyword={}",
@@ -152,14 +150,10 @@ class EEStudent_Info:
                 "title": f"{site_name}에서 '{keyword}' 공모전 검색",
                 "url": full_url
             })
+            
         if keyword == "AI":
             recommended_links.append({"title": "AI Hub", "url": "https://aihub.or.kr/"})
         elif keyword == "반도체":
              recommended_links.append({"title": "반도체산업협회", "url": "https://www.ksia.or.kr/"})
 
         return recommended_links
-
-
-
-
-
