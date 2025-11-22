@@ -204,11 +204,16 @@ if st.button("🚀 나에게 맞는 추천 받기!", type="primary", use_contain
         st.divider()
         
         st.subheader("🔗 관련 공모전 정보")
-        if recommended_url:
-            st.markdown(f"**[{interest} 관련 공모전/활동 보러가기 (Linkareer)]({recommended_url})**")
-            st.caption(f"링크: {recommended_url}")
+        recommended_urls = student_helper.get_recommended_url()
+        
+        if recommended_urls:
+            # 리스트 안에 있는 링크들을 하나씩 꺼내서 보여줍니다.
+            for link_info in recommended_urls:
+                title = link_info["title"]
+                url = link_info["url"]
+                st.markdown(f"- 🌐 **[{title} 보러가기]({url})**")
         else:
-            st.info(f"'{interest}' 분야에 대한 맞춤 공모전 링크를 찾지 못했습니다.")
+            st.info(f"'{interest}' 분야에 대한 맞춤 링크 정보를 찾지 못했습니다.")
 
         st.divider()
 
@@ -243,3 +248,4 @@ if st.button("🚀 나에게 맞는 추천 받기!", type="primary", use_contain
                     st.error(course)
             else:
                 st.success("🎉 축하합니다! 전공필수 과목을 모두 수강하셨습니다!")
+
